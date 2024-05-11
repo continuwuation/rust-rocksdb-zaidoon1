@@ -56,7 +56,37 @@ fn build_rocksdb() {
     let mut config = cc::Build::new();
     config.include("rocksdb/include/");
     config.include("rocksdb/");
-    config.include("rocksdb/third-party/gtest-1.8.1/fused-src/");
+
+    if cfg!(feature = "gtest") {
+        config.include("rocksdb/third-party/gtest-1.8.1/fused-src/");
+        config.define("TESTS", Some("1"));
+        config.define("WITH_TESTS", Some("1"));
+    }
+
+    #[cfg(feature = "folly")]
+    if cfg!(feature = "folly") {
+        let folly = find_folly::probe_folly().expect("unable to find folly");
+
+        config.includes(&folly.include_paths);
+
+        for other_cflag in &folly.other_cflags {
+            config.flag(other_cflag);
+        }
+
+        config.define("WITH_FOLLY", Some("1"));
+        config.define("USE_FOLLY", Some("1"));
+        config.define("FOLLY", Some("1"));
+
+        config.define("WITH_GFLAGS", Some("1"));
+        config.define("USE_GFLAGS", Some("1"));
+        config.define("GFLAGS", Some("1"));
+    }
+
+    if cfg!(feature = "coroutines") {
+        config.define("COROUTINES", Some("1"));
+        config.define("WITH_COROUTINES", Some("1"));
+        config.define("USE_COROUTINES", None);
+    }
 
     if cfg!(feature = "snappy") {
         config.define("SNAPPY", Some("1"));

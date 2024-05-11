@@ -40,6 +40,9 @@ zlib = ["libz-sys"]
 bzip2 = ["bzip2-sys"]
 rtti = []
 malloc-usable-size = []
+gtest = []
+folly = []
+coroutines = ["folly", "gtest"]
 
 [dependencies]
 libc = "0.2"
@@ -60,3 +63,4 @@ cc = { version = "1.0", features = ["parallel"] }
 bindgen = { version = "0.69", default-features = false, features = ["runtime"] }
 glob = "0.3"
 pkg-config = { version = "0.3", optional = true }
+find-folly = "0.1.0"
