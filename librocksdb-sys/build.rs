@@ -372,6 +372,16 @@ fn main() {
         } else if target.contains("linux") {
             println!("cargo:rustc-link-lib=dylib=stdc++");
         }
+
+        // rocksdb only works with the prebuilt rocksdb system lib on freebsd
+        if target.contains("freebsd") {
+            println!("cargo:rustc-link-search=native=/usr/local/lib");
+            let mode = match env::var_os("ROCKSDB_STATIC") {
+                Some(_) => "static",
+                None => "dylib",
+            };
+            println!("cargo:rustc-link-lib={}=rocksdb", mode);
+        }
     }
     if cfg!(feature = "snappy") && !try_to_find_and_link_lib("SNAPPY") {
         println!("cargo:rerun-if-changed=snappy/");
