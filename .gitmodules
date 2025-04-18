@@ -4,6 +4,6 @@
 #	shallow = true
 [submodule "rocksdb_sys/rocksdb"]
 	path = librocksdb-sys/rocksdb
-	url = https://github.com/girlbossceo/rocksdb.git
+	url = https://forgejo.ellis.link/continuwuation/rocksdb.git
 	branch = v9.11.1
 	shallow = true
