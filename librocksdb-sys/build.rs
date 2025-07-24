@@ -1064,9 +1064,9 @@ mod bindings {
             .header(header.display().to_string())
             .derive_debug(false)
             // https://github.com/rust-lang-nursery/rust-bindgen/issues/550
-            .blocklist_type("max_align_t")
             .ctypes_prefix("libc")
-            .size_t_is_usize(true);
+            .size_t_is_usize(true)
+            .vtable_generation(true);
 
         // Pass every include path so headers split across multiple roots
         // (rare but happens with chained pkg-config deps) are all found.
