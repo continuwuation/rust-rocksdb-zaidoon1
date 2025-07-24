@@ -48,7 +48,7 @@ lto = []
 
 [dependencies]
 libc = "0.2"
-tikv-jemalloc-sys = { version = "0.6", features = [
+tikv-jemalloc-sys = { git = "https://forgejo.ellis.link/continuwuation/jemallocator", rev = "82af58d6a13ddd5dcdc7d4e91eae3b63292995b8", features = [
     "unprefixed_malloc_on_supported_platforms",
 ], optional = true }
 lz4-sys = { version = "1.11", optional = true }
