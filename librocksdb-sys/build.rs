@@ -385,7 +385,7 @@ mod vendor {
 
         cfg.include("rocksdb/include/")
             .include("rocksdb/")
-            .include("rocksdb/third-party/gtest-1.8.1/fused-src/")
+            // .include("rocksdb/third-party/gtest-1.8.1/fused-src/")
             .include(".");
 
         cfg.define("NDEBUG", Some("1"));
