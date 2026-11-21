@@ -97,7 +97,7 @@ valgrind = []
 
 [dependencies]
 libc = "0.2"
-tikv-jemalloc-sys = { git = "https://forgejo.ellis.link/continuwuation/jemallocator", rev = "ac4d4861b335b199f812807996e8c9166961041a", features = [
+tikv-jemalloc-sys = { git = "https://forgejo.ellis.link/continuwuation/jemallocator", rev = "46e7821917b06636cdb5b203d312799970eaea92", features = [
     "unprefixed_malloc_on_supported_platforms",
 ], optional = true }
 lz4-sys = { version = "1.11", optional = true }
